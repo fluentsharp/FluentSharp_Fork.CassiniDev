@@ -19,6 +19,8 @@ This is what I did with the branch\v6 code that I downloaded from http://cassini
 *inside CassiniDev.Lib.Net35 removed:
 ** bin
 ** obj
+** Program.cs (not used in VS project)
+** Views (not used in VS CassiniDev.Lib.Net35 project (with the idea to have as little dependencies as possible)
 
 * First commmit now only had:
 ** CassiniDev.Lib.Net35
