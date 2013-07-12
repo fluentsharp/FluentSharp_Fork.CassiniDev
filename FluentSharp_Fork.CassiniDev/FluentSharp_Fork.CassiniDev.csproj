@@ -68,47 +68,55 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentSharp.CoreLib">
+      <HintPath>..\packages\FluentSharp.CoreLib.5.0.84\lib\net35\FluentSharp.CoreLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowserTestResultItem.cs" />
-    <Compile Include="BrowserTestResults.cs" />
-    <Compile Include="CassiniDevBrowserTest.cs" />
-    <Compile Include="CassiniServer.cs" />
-    <Compile Include="Configuration\CassiniDevConfigurationSection.cs" />
-    <Compile Include="Configuration\CassiniDevProfileElement.cs" />
-    <Compile Include="Configuration\CassiniDevProfileElementCollection.cs" />
-    <Compile Include="Configuration\MimeTypeElement.cs" />
-    <Compile Include="Configuration\MimeTypeElementCollection.cs" />
-    <Compile Include="Configuration\PluginElement.cs" />
-    <Compile Include="Configuration\PluginElementCollection.cs" />
-    <Compile Include="ContentLocator.cs" />
-    <Compile Include="Core\Connection.cs" />
-    <Compile Include="Core\Host.cs" />
-    <Compile Include="Core\Messages.cs" />
-    <Compile Include="Core\NtlmAuth.cs" />
-    <Compile Include="Core\Request.cs" />
-    <Compile Include="Core\RequestEventArgs.cs" />
-    <Compile Include="Core\RequestInfo.cs" />
-    <Compile Include="Core\Server.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IContentLocator.cs" />
-    <Compile Include="LocalContentLocator.cs" />
-    <Compile Include="Logging\LogInfo.cs" />
-    <Compile Include="Misc\CommandLine.cs" />
-    <Compile Include="Misc\CommandLineArguments.cs" />
-    <Compile Include="Misc\CommandLineParser.cs" />
-    <Compile Include="Misc\Common.cs" />
-    <Compile Include="Misc\HostsFile.cs" />
-    <Compile Include="Misc\Interop.cs" />
-    <Compile Include="Misc\NetworkUtils.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\BrowserTestResultItem.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\BrowserTestResults.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\CassiniDevBrowserTest.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\CassiniServer.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\CassiniDevConfigurationSection.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\CassiniDevProfileElement.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\CassiniDevProfileElementCollection.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\MimeTypeElement.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\MimeTypeElementCollection.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\PluginElement.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Configuration\PluginElementCollection.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\ContentLocator.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\Connection.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\Host.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\Messages.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\NtlmAuth.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\Request.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\RequestEventArgs.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\RequestInfo.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Core\Server.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\GlobalSuppressions.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\IContentLocator.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\LocalContentLocator.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Logging\LogInfo.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\CommandLine.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\CommandLineArguments.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\CommandLineParser.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\Common.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\HostsFile.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\Interop.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Misc\NetworkUtils.cs" />
+    <Compile Include="FluentSharp.CassiniDev\API_Cassini.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QUnitExBrowserTestResultItem.cs" />
-    <Compile Include="Resources\SR.cs" />
-    <Compile Include="WebBrowser.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\QUnitExBrowserTestResultItem.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\Resources\SR.cs" />
+    <Compile Include="CassiniDev.Lib.Net35\WebBrowser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
