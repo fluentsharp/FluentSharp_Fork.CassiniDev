@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentSharp.BCL">
-      <HintPath>..\packages\FluentSharp.BCL.5.0.84\lib\net35\FluentSharp.BCL.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentSharp.CoreLib">
-      <HintPath>..\packages\FluentSharp.CoreLib.5.0.84\lib\net35\FluentSharp.CoreLib.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -62,6 +56,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FluentSharp.BCL\FluentSharp.BCL.csproj">
+      <Project>{DF7E73CB-02AC-4689-BB8C-AC21FFCCDDC5}</Project>
+      <Name>FluentSharp.BCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp.CoreLib\FluentSharp.CoreLib.csproj">
+      <Project>{0A7CE0E0-B092-43B5-AB80-99BA909019C9}</Project>
+      <Name>FluentSharp.CoreLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FluentSharp_Fork.CassiniDev\FluentSharp_Fork.CassiniDev.csproj">
       <Project>{E4F4B9DC-F41C-4E3E-A630-DC7F425F61A9}</Project>
       <Name>FluentSharp_Fork.CassiniDev</Name>
