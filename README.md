@@ -8,6 +8,13 @@ Cassini fork of the branch\v6 code from http://cassinidev.codeplex.com/
 Changes:
 =======
 
+- in the CassiniDev code, did a search & replace for
+
+   - 'internal ' -> 'public '
+   - 'private ' -> 'public '
+
+  and now (just about) every class, method, propery and field is public :)
+
 - added project UnitTests_FluentSharp_Fork.CassiniDev
 
 - renamed project to FluentSharp_Fork.CassiniDev

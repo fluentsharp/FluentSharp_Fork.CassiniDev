@@ -23,6 +23,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Web;
 using CassiniDev.ServerLog;
+using FluentSharp.CoreLib;
 
 #endregion
 
@@ -31,25 +32,25 @@ namespace CassiniDev
     /// <summary>
     /// 
     /// </summary>
-    internal class Connection : MarshalByRefObject
+    public class Connection : MarshalByRefObject
     {
         
-        private const int HttpForbidden = 403;
+        public int HttpForbidden = 403;
 
         // ReSharper disable InconsistentNaming
-        private const int HttpOK = 200;
+        public int HttpOK = 200;
         // ReSharper restore InconsistentNaming
 
-        private readonly MemoryStream _responseContent;
+        public MemoryStream _responseContent;
 
-        private readonly Server _server;
-        private LogInfo _requestLog;
-        private LogInfo _responseLog;
+        public Server _server;
+        public LogInfo _requestLog;
+        public LogInfo _responseLog;
 
 
-        private Socket _socket;
+        public Socket _socket;
 
-        internal Connection(Server server, Socket socket)
+        public Connection(Server server, Socket socket)
         {
             
             Id = Guid.NewGuid();
@@ -70,7 +71,7 @@ namespace CassiniDev
         /// <summary>
         /// 
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// 
@@ -248,11 +249,10 @@ namespace CassiniDev
                 }
 
                 availBytes = _socket.Available;
-            }
-            // ReSharper disable EmptyGeneralCatchClause
-            catch
-            // ReSharper restore EmptyGeneralCatchClause
+            }            
+            catch(Exception ex)            
             {
+                ex.log();
             }
 
             return availBytes;
@@ -266,7 +266,7 @@ namespace CassiniDev
             WriteEntireResponseFromString(100, null, null, true);
         }
 
-        internal void Write200Continue()
+        public void Write200Continue()
         {
             WriteEntireResponseFromString(200, null, string.Empty, true);
         }
@@ -435,7 +435,7 @@ namespace CassiniDev
         }
 
 
-        private void FinalizeLogInfo()
+        public void FinalizeLogInfo()
         {
             try
             {
@@ -455,7 +455,7 @@ namespace CassiniDev
             }
         }
 
-        private string GetErrorResponseBody(int statusCode, string message)
+        public string GetErrorResponseBody(int statusCode, string message)
         {
             string body = Messages.FormatErrorMessageBody(statusCode, _server.VirtualPath);
 
@@ -467,7 +467,7 @@ namespace CassiniDev
             return body;
         }
 
-        private void InitializeLogInfo()
+        public void InitializeLogInfo()
         {
             _requestLog = new LogInfo
                 {
@@ -485,7 +485,7 @@ namespace CassiniDev
                 };
         }
 
-        private static string MakeResponseHeaders(int statusCode, string moreHeaders, int contentLength, bool keepAlive)
+        public static string MakeResponseHeaders(int statusCode, string moreHeaders, int contentLength, bool keepAlive)
         {
             StringBuilder sb = new StringBuilder();
 

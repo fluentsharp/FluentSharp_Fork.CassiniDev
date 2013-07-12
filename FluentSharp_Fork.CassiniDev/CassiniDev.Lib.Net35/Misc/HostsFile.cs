@@ -76,7 +76,7 @@ namespace CassiniDev
             return StartElevated(executablePath, string.Format("Hostsfile /ah- /h:{0} /i:{1}", hostname, ipAddress));
         }
 
-        private static void SetHostsEntry(bool addHost, string ipAddress, string hostname)
+        public static void SetHostsEntry(bool addHost, string ipAddress, string hostname)
         {
             // limitation: while windows allows mulitple entries for a single host, we currently allow only one
             string windir = Environment.GetEnvironmentVariable("SystemRoot") ?? @"c:\windows";
@@ -96,7 +96,7 @@ namespace CassiniDev
             File.WriteAllText(hostsFilePath, hostsFileContent);
         }
 
-        private static int StartElevated(string filename, string args)
+        public static int StartElevated(string filename, string args)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
                 {

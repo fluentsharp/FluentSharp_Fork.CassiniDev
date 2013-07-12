@@ -25,7 +25,7 @@ namespace CassiniDev
 
         
 
-        private Server _server;
+        public Server _server;
         ///<summary>
         ///</summary>
         public Server Server

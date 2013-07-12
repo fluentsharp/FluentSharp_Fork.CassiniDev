@@ -23,35 +23,35 @@ using System.Security.Principal;
 namespace CassiniDev
 {
     [SuppressUnmanagedCodeSecurity]
-    internal sealed class NtlmAuth : IDisposable
+    public sealed class NtlmAuth : IDisposable
     {
         
-        private readonly bool _credentialsHandleAcquired;
+        public readonly bool _credentialsHandleAcquired;
 
-        private string _blob;
+        public string _blob;
 
-        private bool _completed;
+        public bool _completed;
 
-        private NativeMethods.SecHandle _credentialsHandle;
+        public NativeMethods.SecHandle _credentialsHandle;
 
-        private NativeMethods.SecBuffer _inputBuffer;
-        private NativeMethods.SecBufferDesc _inputBufferDesc;
+        public NativeMethods.SecBuffer _inputBuffer;
+        public NativeMethods.SecBufferDesc _inputBufferDesc;
 
-        private NativeMethods.SecBuffer _outputBuffer;
+        public NativeMethods.SecBuffer _outputBuffer;
 
-        private NativeMethods.SecBufferDesc _outputBufferDesc;
+        public NativeMethods.SecBufferDesc _outputBufferDesc;
 
-        private NativeMethods.SecHandle _securityContext;
+        public NativeMethods.SecHandle _securityContext;
 
-        private bool _securityContextAcquired;
+        public bool _securityContextAcquired;
 
-        private uint _securityContextAttributes;
+        public uint _securityContextAttributes;
 
-        private SecurityIdentifier _sid;
+        public SecurityIdentifier _sid;
 
-        private long _timestamp;
+        public long _timestamp;
 
-        private IntPtr _phToken;
+        public IntPtr _phToken;
 
         public NtlmAuth()
         {
@@ -167,7 +167,7 @@ namespace CassiniDev
             FreeUnmanagedResources();
         }
 
-        private void FreeUnmanagedResources()
+        public void FreeUnmanagedResources()
         {
             if (_phToken != IntPtr.Zero)
             {

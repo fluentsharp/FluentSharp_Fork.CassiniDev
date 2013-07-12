@@ -216,25 +216,25 @@ namespace CassiniDev
         /// </summary>
         public const string NewLine = "\r\n";
 
-        private const int SpaceBeforeParam = 2;
+        public const int SpaceBeforeParam = 2;
 
-        private const int StdOutputHandle = -11;
+        public const int StdOutputHandle = -11;
 
-        private readonly Hashtable _argumentMap;
+        public readonly Hashtable _argumentMap;
 
-        private readonly ArrayList _arguments;
+        public readonly ArrayList _arguments;
 
-        private readonly Type _argumentSpecification;
+        public readonly Type _argumentSpecification;
 
-        private readonly Argument _defaultArgument;
+        public readonly Argument _defaultArgument;
 
-        private readonly ErrorReporter _reporter;
+        public readonly ErrorReporter _reporter;
 
         /// <summary>
         /// Don't ever call this.
         /// </summary>
         // ReSharper disable UnusedMember.Local
-        private CommandLineParser()
+        public CommandLineParser()
             // ReSharper restore UnusedMember.Local
         {
             //noop
@@ -568,28 +568,28 @@ namespace CassiniDev
             return helpArgument.help;
         }
 
-        private static void AddNewLine(string newLine, StringBuilder builder, ref int currentColumn)
+        public static void AddNewLine(string newLine, StringBuilder builder, ref int currentColumn)
         {
             builder.Append(newLine);
             currentColumn = 0;
         }
 
-        private static object DefaultValue(ArgumentAttribute attribute)
+        public static object DefaultValue(ArgumentAttribute attribute)
         {
             return (attribute == null || !attribute.HasDefaultValue) ? null : attribute.DefaultValue;
         }
 
-        private static Type ElementType(FieldInfo field)
+        public static Type ElementType(FieldInfo field)
         {
             return IsCollectionType(field.FieldType) ? field.FieldType.GetElementType() : null;
         }
 
-        private static bool ExplicitShortName(ArgumentAttribute attribute)
+        public static bool ExplicitShortName(ArgumentAttribute attribute)
         {
             return (attribute != null && !attribute.DefaultShortName);
         }
 
-        private static ArgumentType Flags(ArgumentAttribute attribute, FieldInfo field)
+        public static ArgumentType Flags(ArgumentAttribute attribute, FieldInfo field)
         {
             if (attribute != null)
             {
@@ -599,7 +599,7 @@ namespace CassiniDev
             return IsCollectionType(field.FieldType) ? ArgumentType.MultipleUnique : ArgumentType.AtMostOnce;
         }
 
-        private ArgumentHelpStrings[] GetAllHelpStrings()
+        public ArgumentHelpStrings[] GetAllHelpStrings()
         {
             ArgumentHelpStrings[] strings = new ArgumentHelpStrings[NumberOfParametersToDisplay()];
 
@@ -618,7 +618,7 @@ namespace CassiniDev
             return strings;
         }
 
-        private static ArgumentAttribute GetAttribute(ICustomAttributeProvider field)
+        public static ArgumentAttribute GetAttribute(ICustomAttributeProvider field)
         {
             object[] attributes = field.GetCustomAttributes(typeof (ArgumentAttribute), false);
             if (attributes.Length == 1)
@@ -631,7 +631,7 @@ namespace CassiniDev
         /// <summary>
         /// 01/01/2010 sky
         /// </summary>
-        private static string GetGenericUsageString(ICustomAttributeProvider type, int cols)
+        public static string GetGenericUsageString(ICustomAttributeProvider type, int cols)
         {
             object[] attributes = type.GetCustomAttributes(typeof (ArgumentsAttribute), true);
             if (attributes.Length == 0 || !((ArgumentsAttribute) attributes[0]).HasHelpText)
@@ -666,27 +666,27 @@ namespace CassiniDev
             return sb.ToString();
         }
 
-        private static ArgumentHelpStrings GetHelpStrings(Argument arg)
+        public static ArgumentHelpStrings GetHelpStrings(Argument arg)
         {
             return new ArgumentHelpStrings(arg.SyntaxHelp, arg.FullHelpText);
         }
 
-        private static bool HasHelpText(ArgumentAttribute attribute)
+        public static bool HasHelpText(ArgumentAttribute attribute)
         {
             return (attribute != null && attribute.HasHelpText);
         }
 
-        private static string HelpText(ArgumentAttribute attribute)
+        public static string HelpText(ArgumentAttribute attribute)
         {
             return attribute == null ? null : attribute.HelpText;
         }
 
-        private static bool IsCollectionType(Type type)
+        public static bool IsCollectionType(Type type)
         {
             return type.IsArray;
         }
 
-        private static bool IsValidElementType(Type type)
+        public static bool IsValidElementType(Type type)
         {
             //SKY:12/25/09 - added ushort
             return type != null && (
@@ -698,7 +698,7 @@ namespace CassiniDev
                                        type.IsEnum);
         }
 
-        private bool LexFileArguments(string fileName, out string[] argumentsOut)
+        public bool LexFileArguments(string fileName, out string[] argumentsOut)
         {
             string args;
 
@@ -808,16 +808,16 @@ namespace CassiniDev
             return hadError;
         }
 
-        private static string LongName(ArgumentAttribute attribute, FieldInfo field)
+        public static string LongName(ArgumentAttribute attribute, FieldInfo field)
         {
             return (attribute == null || attribute.DefaultLongName) ? field.Name : attribute.LongName;
         }
 
-        private static void NullErrorReporter(string message)
+        public static void NullErrorReporter(string message)
         {
         }
 
-        private int NumberOfParametersToDisplay()
+        public int NumberOfParametersToDisplay()
         {
             int numberOfParameters = _arguments.Count + 1;
             if (HasDefaultArgument)
@@ -833,7 +833,7 @@ namespace CassiniDev
         /// <param name="args"></param>
         /// <param name="destination"></param>
         /// <returns> true if an error occurred </returns>
-        private bool ParseArgumentList(IEnumerable<string> args, object destination)
+        public bool ParseArgumentList(IEnumerable<string> args, object destination)
         {
             bool hadError = false;
             if (args != null)
@@ -898,12 +898,12 @@ namespace CassiniDev
             return hadError;
         }
 
-        private void ReportUnrecognizedArgument(string argument)
+        public void ReportUnrecognizedArgument(string argument)
         {
             _reporter(string.Format("Unrecognized command line argument '{0}'", argument));
         }
 
-        private static string ShortName(ArgumentAttribute attribute, FieldInfo field)
+        public static string ShortName(ArgumentAttribute attribute, FieldInfo field)
         {
             if (attribute is DefaultArgumentAttribute)
                 return null;
@@ -915,21 +915,21 @@ namespace CassiniDev
         #region Nested type: Argument
 
         [DebuggerDisplay("Name = {LongName}")]
-        private class Argument
+        public class Argument
         {
-            private readonly ArrayList _collectionValues;
-            private readonly object _defaultValue;
-            private readonly Type _elementType;
-            private readonly bool _explicitShortName;
-            private readonly FieldInfo _field;
-            private readonly ArgumentType _flags;
-            private readonly bool _hasHelpText;
-            private readonly string _helpText;
-            private readonly bool _isDefault;
-            private readonly string _longName;
-            private readonly ErrorReporter _reporter;
-            private bool _seenValue;
-            private string _shortName;
+            public readonly ArrayList _collectionValues;
+            public readonly object _defaultValue;
+            public readonly Type _elementType;
+            public readonly bool _explicitShortName;
+            public readonly FieldInfo _field;
+            public readonly ArgumentType _flags;
+            public readonly bool _hasHelpText;
+            public readonly string _helpText;
+            public readonly bool _isDefault;
+            public readonly string _longName;
+            public readonly ErrorReporter _reporter;
+            public bool _seenValue;
+            public string _shortName;
 
             public Argument(ArgumentAttribute attribute, FieldInfo field, ErrorReporter reporter)
             {
@@ -963,7 +963,7 @@ namespace CassiniDev
                              "Type of default value must match field type");
             }
 
-            private Type ValueType
+            public Type ValueType
             {
                 get { return IsCollection ? _elementType : Type; }
             }
@@ -983,27 +983,27 @@ namespace CassiniDev
                 get { return _shortName; }
             }
 
-            private bool HasShortName
+            public bool HasShortName
             {
                 get { return _shortName != null; }
             }
 
-            private bool HasHelpText
+            public bool HasHelpText
             {
                 get { return _hasHelpText; }
             }
 
-            private string HelpText
+            public string HelpText
             {
                 get { return _helpText; }
             }
 
-            private object DefaultValue
+            public object DefaultValue
             {
                 get { return _defaultValue; }
             }
 
-            private bool HasDefaultValue
+            public bool HasDefaultValue
             {
                 get { return null != _defaultValue; }
             }
@@ -1095,37 +1095,37 @@ namespace CassiniDev
                 }
             }
 
-            private bool IsRequired
+            public bool IsRequired
             {
                 get { return 0 != (_flags & ArgumentType.Required); }
             }
 
-            private bool SeenValue
+            public bool SeenValue
             {
                 get { return _seenValue; }
             }
 
-            private bool AllowMultiple
+            public bool AllowMultiple
             {
                 get { return 0 != (_flags & ArgumentType.Multiple); }
             }
 
-            private bool Unique
+            public bool Unique
             {
                 get { return 0 != (_flags & ArgumentType.Unique); }
             }
 
-            private Type Type
+            public Type Type
             {
                 get { return _field.FieldType; }
             }
 
-            private bool IsCollection
+            public bool IsCollection
             {
                 get { return IsCollectionType(Type); }
             }
 
-            private bool IsDefault
+            public bool IsDefault
             {
                 get { return _isDefault; }
             }
@@ -1150,7 +1150,7 @@ namespace CassiniDev
                 return ReportMissingRequiredArgument();
             }
 
-            private bool ReportMissingRequiredArgument()
+            public bool ReportMissingRequiredArgument()
             {
                 if (IsRequired && !SeenValue)
                 {
@@ -1163,7 +1163,7 @@ namespace CassiniDev
                 return false;
             }
 
-            private void ReportDuplicateArgumentValue(string value)
+            public void ReportDuplicateArgumentValue(string value)
             {
                 _reporter(string.Format("Duplicate '{0}' argument '{1}'", LongName, value));
             }
@@ -1201,12 +1201,12 @@ namespace CassiniDev
                 return true;
             }
 
-            private void ReportBadArgumentValue(string value)
+            public void ReportBadArgumentValue(string value)
             {
                 _reporter(string.Format("'{0}' is not a valid value for the '{1}' command line option", value, LongName));
             }
 
-            private bool ParseValue(Type type, string stringData, out object value)
+            public bool ParseValue(Type type, string stringData, out object value)
             {
                 // null is only valid for bool variables
                 // empty string is never valid
@@ -1295,7 +1295,7 @@ namespace CassiniDev
                 return false;
             }
 
-            private static void AppendValue(StringBuilder builder, object value)
+            public static void AppendValue(StringBuilder builder, object value)
             {
                 //SKY:12/25/09 - add ushort
                 if (value is string || value is int || value is uint || value is ushort || value.GetType().IsEnum)
@@ -1331,7 +1331,7 @@ namespace CassiniDev
 
         #region Nested type: ArgumentHelpStrings
 
-        private struct ArgumentHelpStrings
+        public struct ArgumentHelpStrings
         {
             public readonly string help;
             public readonly string syntax;
@@ -1347,7 +1347,7 @@ namespace CassiniDev
 
         #region Nested type: HelpArgument
 
-        private class HelpArgument
+        public class HelpArgument
         {
 #pragma warning disable 649
             [Argument(ArgumentType.AtMostOnce, ShortName = "?")] public bool help;
@@ -1433,7 +1433,7 @@ namespace CassiniDev
     [AttributeUsage(AttributeTargets.Class)]
     public class ArgumentsAttribute : Attribute
     {
-        private string _helpText;
+        public string _helpText;
 
         /// <summary>
         /// Returns true if the argument has help text specified.
@@ -1463,14 +1463,14 @@ namespace CassiniDev
     {
         #region Fields
 
-        private readonly ArgumentType _type;
-        private object _defaultValue;
+        public readonly ArgumentType _type;
+        public object _defaultValue;
 
-        private string _helpText;
+        public string _helpText;
 
-        private string _longName;
+        public string _longName;
 
-        private string _shortName;
+        public string _shortName;
 
         #endregion
 

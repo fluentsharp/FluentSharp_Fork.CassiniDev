@@ -63,39 +63,39 @@ namespace CassiniDev
 
         ///<summary>
         ///</summary>
-        private readonly ApplicationManager _applicationManager;
+        public readonly ApplicationManager _applicationManager;
 
-        private readonly bool _disableDirectoryListing;
+        public readonly bool _disableDirectoryListing;
 
-        private readonly string _hostName;
+        public readonly string _hostName;
 
-        private readonly IPAddress _ipAddress;
+        public readonly IPAddress _ipAddress;
 
-        private readonly object _lockObject;
+        public readonly object _lockObject;
 
-        private readonly string _physicalPath;
+        public readonly string _physicalPath;
 
-        private readonly int _port;
-        private readonly bool _requireAuthentication;
-        //private readonly int _timeoutInterval;
-        private readonly string _virtualPath;
-        private bool _disposed;
+        public readonly int _port;
+        public readonly bool _requireAuthentication;
+        //public readonly int _timeoutInterval;
+        public readonly string _virtualPath;
+        public bool _disposed;
 
-        private Host _host;
+        public Host _host;
 
-        private IntPtr _processToken;
+        public IntPtr _processToken;
 
-        private string _processUser;
+        public string _processUser;
 
-        //private int _requestCount;
+        //public int _requestCount;
 
-        private bool _shutdownInProgress;
+        public bool _shutdownInProgress;
 
-        private Socket _socket;
+        public Socket _socket;
 
-        //private Timer _timer;
+        //public Timer _timer;
 
-        private string _appId;
+        public string _appId;
         ///<summary>
         ///</summary>
         public string AppId
@@ -223,7 +223,7 @@ namespace CassiniDev
         {
         }
 
-        private static string PreparePhysicalPath(string physicalPath)
+        public static string PreparePhysicalPath(string physicalPath)
         {
             physicalPath = Path.GetFullPath(physicalPath);
             physicalPath = physicalPath.EndsWith("\\", StringComparison.Ordinal)
@@ -262,13 +262,13 @@ namespace CassiniDev
             ObtainProcessToken();
         }
 
-        private bool IsProfileMatch(CassiniDevProfileElement profile)
+        public bool IsProfileMatch(CassiniDevProfileElement profile)
         {
             return profile.Name == "*" || profile.Port == "*" || profile.Path == "*" || Convert.ToInt64(profile.Port) == _port;
         }
 
-        private Dictionary<string, string> _mimeTypes = new Dictionary<string, string>();
-        private void ProcessConfiguration()
+        public Dictionary<string, string> _mimeTypes = new Dictionary<string, string>();
+        public void ProcessConfiguration()
         {
             // #TODO: how to identify profile to use?
             // current method is to either use default '*' profile or match port
@@ -1886,7 +1886,7 @@ namespace CassiniDev
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        private static string GetMimeFromFile(string file)
+        public static string GetMimeFromFile(string file)
         {
             IntPtr mimeout;
             if (!File.Exists(file))
@@ -2137,7 +2137,7 @@ namespace CassiniDev
         }
 
 
-        private static Socket CreateSocketBindAndListen(AddressFamily family, IPAddress address, int port)
+        public static Socket CreateSocketBindAndListen(AddressFamily family, IPAddress address, int port)
         {
             Socket socket = new Socket(family, SocketType.Stream, ProtocolType.Tcp);
             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
@@ -2158,7 +2158,7 @@ namespace CassiniDev
         /// This is Dmitry's hack to enable running outside of GAC.
         /// There are some errors being thrown when running in proc
         /// </remarks>
-        private object CreateWorkerAppDomainWithHost(string virtualPath, string physicalPath, Type hostType, int port)
+        public object CreateWorkerAppDomainWithHost(string virtualPath, string physicalPath, Type hostType, int port)
         {
 
 
@@ -2181,7 +2181,7 @@ namespace CassiniDev
             return _applicationManager.CreateObject(_appId, hostType, virtualPath, physicalPath, false);
         }
 
-        //private void DecrementRequestCount()
+        //public void DecrementRequestCount()
         //{
         //    lock (_lockObject)
         //    {
@@ -2199,7 +2199,7 @@ namespace CassiniDev
         //    }
         //}
 
-        private Host GetHost()
+        public Host GetHost()
         {
             if (_shutdownInProgress)
                 return null;
@@ -2246,7 +2246,7 @@ namespace CassiniDev
             return host;
         }
 
-        //private void IncrementRequestCount()
+        //public void IncrementRequestCount()
         //{
 
         //    lock (_lockObject)
@@ -2263,7 +2263,7 @@ namespace CassiniDev
         //}
 
 
-        private void ObtainProcessToken()
+        public void ObtainProcessToken()
         {
             if (NativeMethods.ImpersonateSelf(2))
             {
@@ -2282,7 +2282,7 @@ namespace CassiniDev
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="userName"></param>
-        internal void OnRequestEnd(Connection conn, string userName)
+        public void OnRequestEnd(Connection conn, string userName)
         {
             try
             {
@@ -2301,7 +2301,7 @@ namespace CassiniDev
         }
 
 
-        private void OnRequestComplete(Guid id, LogInfo requestLog, LogInfo responseLog)
+        public void OnRequestComplete(Guid id, LogInfo requestLog, LogInfo responseLog)
         {
             Trace.WriteLine(requestLog);
             Trace.WriteLine(responseLog);
@@ -2372,7 +2372,7 @@ namespace CassiniDev
 
         }
 
-        //private void TimeOut(object ignored)
+        //public void TimeOut(object ignored)
         //{
         //    TimeOut();
         //}
@@ -2385,7 +2385,7 @@ namespace CassiniDev
         //    OnTimeOut();
         //}
 
-        //private void OnTimeOut()
+        //public void OnTimeOut()
         //{
         //    EventHandler handler = TimedOut;
         //    if (handler != null) handler(this, EventArgs.Empty);

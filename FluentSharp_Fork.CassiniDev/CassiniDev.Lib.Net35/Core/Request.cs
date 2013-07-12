@@ -27,6 +27,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Web;
 using System.Web.Hosting;
+using FluentSharp.CoreLib;
 using Microsoft.Win32.SafeHandles;
 using System.Security.Principal;
 //
@@ -35,26 +36,26 @@ using System.Security.Principal;
 
 namespace CassiniDev
 {
-    internal class Request : SimpleWorkerRequest
+    public class Request : SimpleWorkerRequest
     {
 
 
 
         #region Constants
-        private const int MaxChunkLength = 64 * 1024;
+        public const int MaxChunkLength = 64 * 1024;
 
-        private const int MaxHeaderBytes = 32 * 1024;
+        public const int MaxHeaderBytes = 32 * 1024;
 
-        private static readonly char[] BadPathChars = new[] { '%', '>', '<', ':', '\\' };
+        public static readonly char[] BadPathChars = new[] { '%', '>', '<', ':', '\\' };
 
-        private static readonly string[] DefaultFileNames = new[] { "default.aspx", "default.htm", "default.html" };
+        public static readonly string[] DefaultFileNames = new[] { "default.aspx", "default.htm", "default.html" };
 
-        private static readonly char[] IntToHex = new[]
+        public static readonly char[] IntToHex = new[]
             {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
             };
 
-        private static readonly string[] RestrictedDirs = new[]
+        public static readonly string[] RestrictedDirs = new[]
             {
                 "/bin",
                 "/app_browsers",
@@ -68,61 +69,61 @@ namespace CassiniDev
         #endregion
 
         #region exposable members
-        private string _allRawHeaders;
+        public string _allRawHeaders;
 
-        private byte[] _body;
+        public byte[] _body;
 
-        private int _bodyLength;
-        private int _contentLength;
+        public int _bodyLength;
+        public int _contentLength;
 
         // security permission to Assert remoting calls to _connection
-        private int _endHeadersOffset;
+        public int _endHeadersOffset;
 
-        private string _filePath;
+        public string _filePath;
 
-        private byte[] _headerBytes;
+        public byte[] _headerBytes;
 
-        private List<ByteString> _headerByteStrings;
-        private bool _headersSent;
+        public List<ByteString> _headerByteStrings;
+        public bool _headersSent;
 
         // parsed request data
 
-        private bool _isClientScriptPath;
+        public bool _isClientScriptPath;
 
-        private string[] _knownRequestHeaders;
+        public string[] _knownRequestHeaders;
 
-        private string _path;
+        public string _path;
 
-        private string _pathInfo;
+        public string _pathInfo;
 
-        private string _pathTranslated;
+        public string _pathTranslated;
 
-        private string _protocol;
+        public string _protocol;
 
-        private string _queryString;
-        private byte[] _queryStringBytes;
-        private List<byte[]> _responseBodyBytes;
+        public string _queryString;
+        public byte[] _queryStringBytes;
+        public List<byte[]> _responseBodyBytes;
 
-        private int _responseStatus;
+        public int _responseStatus;
 
-        private bool _specialCaseStaticFileHeaders;
+        public bool _specialCaseStaticFileHeaders;
 
-        private int _startHeadersOffset;
+        public int _startHeadersOffset;
 
-        private string[][] _unknownRequestHeaders;
+        public string[][] _unknownRequestHeaders;
 
-        private string _url;
+        public string _url;
 
-        private string _verb;
+        public string _verb;
 
         #endregion
 
-        private readonly IStackWalk _connectionPermission = new PermissionSet(PermissionState.Unrestricted);
-        private readonly Host _host;
-        private readonly Server _server;
-        private Connection _connection;
-        private StringBuilder _responseHeadersBuilder;
-        private NtlmAuth _auth;
+        public readonly IStackWalk _connectionPermission = new PermissionSet(PermissionState.Unrestricted);
+        public readonly Host _host;
+        public readonly Server _server;
+        public Connection _connection;
+        public StringBuilder _responseHeadersBuilder;
+        public NtlmAuth _auth;
 
 
 
@@ -682,8 +683,11 @@ namespace CassiniDev
             _responseHeadersBuilder.Append("\r\n");
         }
 
-        private bool IsBadPath()
+        public bool IsBadPath()
         {
+            
+            if (_path == null)                           // Fixes bug with Cassini where it can be brought down with a simple bad first request
+                return true;
             if (_path.IndexOfAny(BadPathChars) >= 0)
             {
                 Trace.TraceError("Path contains bad characters {1} : {0}", _path, BadPathChars);
@@ -705,7 +709,7 @@ namespace CassiniDev
             return false;
         }
 
-        private bool IsRequestForRestrictedDirectory()
+        public bool IsRequestForRestrictedDirectory()
         {
             String p = CultureInfo.InvariantCulture.TextInfo.ToLower(_path);
 
@@ -728,7 +732,7 @@ namespace CassiniDev
             return false;
         }
 
-        private void ParseHeaders()
+        public void ParseHeaders()
         {
             _knownRequestHeaders = new string[RequestHeaderMaximum];
 
@@ -786,7 +790,7 @@ namespace CassiniDev
             }
         }
 
-        private void ParsePostedContent()
+        public void ParsePostedContent()
         {
             _contentLength = 0;
             _bodyLength = 0;
@@ -823,7 +827,7 @@ namespace CassiniDev
             }
         }
 
-        private void ParseRequestLine()
+        public void ParseRequestLine()
         {
             ByteString requestLine = _headerByteStrings[0];
             ByteString[] elems = requestLine.Split(' ');
@@ -897,7 +901,7 @@ namespace CassiniDev
             _connection.LogRequest(_pathTranslated, _url);
         }
 
-        private void PrepareResponse()
+        public void PrepareResponse()
         {
             _headersSent = false;
             _responseStatus = 200;
@@ -908,7 +912,7 @@ namespace CassiniDev
 
         }
 
-        private bool ProcessDirectoryListingRequest()
+        public bool ProcessDirectoryListingRequest()
         {
             if (_verb != "GET")
             {
@@ -960,7 +964,7 @@ namespace CassiniDev
             return true;
         }
 
-        private bool ProcessDirectoryRequest()
+        public bool ProcessDirectoryRequest()
         {
             String dirPathTranslated = _pathTranslated;
 
@@ -1007,7 +1011,7 @@ namespace CassiniDev
             return false; // go through normal processing
         }
 
-        private void ReadAllHeaders()
+        public void ReadAllHeaders()
         {
             _headerBytes = null;
 
@@ -1029,7 +1033,7 @@ namespace CassiniDev
 
         }
 
-        private void Reset()
+        public void Reset()
         {
             _headerBytes = null;
             _startHeadersOffset = 0;
@@ -1059,7 +1063,7 @@ namespace CassiniDev
             _specialCaseStaticFileHeaders = false;
         }
 
-        private void SendResponseFromFileStream(Stream f, long offset, long length)
+        public void SendResponseFromFileStream(Stream f, long offset, long length)
         {
             long fileSize = f.Length;
 
@@ -1106,7 +1110,7 @@ namespace CassiniDev
             }
         }
 
-        private void SkipAllPostedContent()
+        public void SkipAllPostedContent()
         {
             if ((_contentLength > 0) && (_bodyLength < _contentLength))
             {
@@ -1124,7 +1128,7 @@ namespace CassiniDev
 
         [SecurityPermission(SecurityAction.Assert, UnmanagedCode = true),
          SecurityPermission(SecurityAction.Assert, ControlPrincipal = true)]
-        private bool TryNtlmAuthenticate()
+        public bool TryNtlmAuthenticate()
         {
             NtlmAuth auth = null;
             try
@@ -1197,7 +1201,7 @@ namespace CassiniDev
         /// TODO: defer response until request is written
         /// </summary>
         /// <returns></returns>
-        private bool TryParseRequest()
+        public bool TryParseRequest()
         {
             Reset();
 
@@ -1233,7 +1237,7 @@ namespace CassiniDev
             return true;
         }
 
-        private bool TryReadAllHeaders()
+        public bool TryReadAllHeaders()
         {
             // read the first packet (up to 32K)
             byte[] headerBytes = _connection.ReadRequestBytes(MaxHeaderBytes);
@@ -1292,9 +1296,9 @@ namespace CassiniDev
             return true;
         }
 
-        private static string UrlEncodeRedirect(string path)
+        public static string UrlEncodeRedirect(string path)
         {
-            // this method mimics the logic in HttpResponse.Redirect (which relies on internal methods)
+            // this method mimics the logic in HttpResponse.Redirect (which relies on public methods)
 
             // count non-ascii characters
             byte[] bytes = Encoding.UTF8.GetBytes(path);
@@ -1344,11 +1348,11 @@ namespace CassiniDev
 
         #region Nested type: ByteParser
 
-        internal class ByteParser
+        public class ByteParser
         {
-            private readonly byte[] _bytes;
+            public readonly byte[] _bytes;
 
-            private int _pos;
+            public int _pos;
 
             public ByteParser(byte[] bytes)
             {
@@ -1395,13 +1399,13 @@ namespace CassiniDev
 
         #region Nested type: ByteString
 
-        internal class ByteString
+        public class ByteString
         {
-            private readonly byte[] _bytes;
+            public readonly byte[] _bytes;
 
-            private readonly int _length;
+            public readonly int _length;
 
-            private readonly int _offset;
+            public readonly int _offset;
 
             public ByteString(byte[] bytes, int offset, int length)
             {

@@ -26,10 +26,10 @@ namespace CassiniDev
     public abstract class CassiniDevBrowserTestFixture<T> where T : BrowserTestResultItem, new()
     {
         
-        private string _url;
-        private TimeSpan _timeOut = TimeSpan.FromMinutes(1);
-        private Dictionary<string, BrowserTestResultItem> _results;
-        private string _postKey = "log.axd";
+        public string _url;
+        public TimeSpan _timeOut = TimeSpan.FromMinutes(1);
+        public Dictionary<string, BrowserTestResultItem> _results;
+        public string _postKey = "log.axd";
 
         ///<summary>
         ///</summary>
@@ -94,7 +94,7 @@ namespace CassiniDev
     [Serializable]
     public class QUnitExBrowserTestResultItem : BrowserTestResultItem
     {
-        private static readonly Regex rx = new Regex(
+        public static readonly Regex rx = new Regex(
             @"failures\s*=\s*(?<failures>\d+)\s*;\s*total\s*=\s*(?<total>\d+)",
             RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
 
@@ -145,7 +145,7 @@ namespace CassiniDev
             SetCount(this, lines[lines.Length - 1]);
         }
 
-        private static void SetCount(BrowserTestResultItem item, string value)
+        public static void SetCount(BrowserTestResultItem item, string value)
         {
             int total, failures;
             ParseCount(value, out total, out failures);
@@ -154,7 +154,7 @@ namespace CassiniDev
             item.Success = failures == 0;
         }
 
-        private static void ParseCount(string value, out int total, out int failures)
+        public static void ParseCount(string value, out int total, out int failures)
         {
             var match = rx.Match(value);
             total = Convert.ToInt32(match.Groups["total"].Value);

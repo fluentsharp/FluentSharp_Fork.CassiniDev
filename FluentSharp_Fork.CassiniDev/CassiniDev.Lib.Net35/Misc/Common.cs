@@ -115,7 +115,7 @@ namespace CassiniDev
 
 
 
-        private static IList<string> SplitIntoChunks(this string text, int chunkSize)
+        public static IList<string> SplitIntoChunks(this string text, int chunkSize)
         {
             List<string> chunks = new List<string>();
             int offset = 0;
@@ -260,7 +260,7 @@ namespace CassiniDev
     /// 
     /// </summary>
     [Serializable]
-    internal class CassiniException : Exception
+    public class CassiniException : Exception
     {
         public CassiniException(string message, ErrorField field, Exception innerException)
             : base(message, innerException)

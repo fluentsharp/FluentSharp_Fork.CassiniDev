@@ -8,7 +8,7 @@ namespace FluentSharp.CassiniDev
         public Server CassiniServer     { get; set; }
         public string PhysicalPath      { get; set; }        
         
-        public API_Cassini() : this("CassiniSite".tempDir(false))
+        public API_Cassini() : this("CassiniSite".tempDir())
         {            
         }
         public API_Cassini(string physicalPath)

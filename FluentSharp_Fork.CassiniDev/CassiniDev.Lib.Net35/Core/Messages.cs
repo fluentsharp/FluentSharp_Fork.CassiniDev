@@ -24,23 +24,23 @@ namespace CassiniDev
     /// <summary>
     /// TODO: get this into resources
     /// </summary>
-    internal static class Messages
+    public static class Messages
     {
-        private const string _dirListingDirFormat =
+        public const string _dirListingDirFormat =
             @"{0,38:dddd, MMMM dd, yyyy hh:mm tt}        &lt;dir&gt; <A href=""{1}/"">{2}</A>
 ";
 
-        private const string _dirListingFileFormat =
+        public const string _dirListingFileFormat =
             @"{0,38:dddd, MMMM dd, yyyy hh:mm tt} {1,12:n0} <A href=""{2}"">{3}</A>
 ";
 
-        private const string _dirListingFormat1 =
+        public const string _dirListingFormat1 =
             @"<html>
     <head>
     <title>Directory Listing -- {0}</title>
 ";
 
-        private const string _dirListingFormat2 =
+        public const string _dirListingFormat2 =
             @"    </head>
     <body bgcolor=""white"">
 
@@ -51,18 +51,18 @@ namespace CassiniDev
 <PRE>
 ";
 
-        private const string _dirListingParentFormat =
+        public const string _dirListingParentFormat =
             @"<A href=""{0}"">[To Parent Directory]</A>
 
 ";
 
-        private const string _httpErrorFormat1 =
+        public const string _httpErrorFormat1 =
             @"<html>
     <head>
         <title>{0}</title>
 ";
 
-        private const string _httpStyle =
+        public const string _httpStyle =
             @"        <style>
         	body {font-family:""Verdana"";font-weight:normal;font-size: 8pt;color:black;} 
         	p {font-family:""Verdana"";font-weight:normal;color:black;margin-top: -5px}
@@ -77,7 +77,7 @@ namespace CassiniDev
         </style>
 ";
 
-        private static readonly string _dirListingTail =
+        public static readonly string _dirListingTail =
             @"</PRE>
             <hr width=100% size=1 color=silver>
 
@@ -90,7 +90,7 @@ namespace CassiniDev
 </html>
 ";
 
-        private static readonly string _httpErrorFormat2 =
+        public static readonly string _httpErrorFormat2 =
             @"    </head>
     <body bgcolor=""white"">
 

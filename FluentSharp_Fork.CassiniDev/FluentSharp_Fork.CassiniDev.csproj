@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CassiniDev</RootNamespace>
-    <AssemblyName>CassiniDev.Lib</AssemblyName>
+    <AssemblyName>FluenSharp.CassiniDev</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -110,6 +110,8 @@
     <Compile Include="CassiniDev.Lib.Net35\Misc\Interop.cs" />
     <Compile Include="CassiniDev.Lib.Net35\Misc\NetworkUtils.cs" />
     <Compile Include="FluentSharp.CassiniDev\API_Cassini.cs" />
+    <Compile Include="FluentSharp.CassiniDev\Extra_ExtensionMethod_TcpClient.cs" />
+    <Compile Include="FluentSharp.CassiniDev\ExtensionMethods\Host_ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CassiniDev.Lib.Net35\QUnitExBrowserTestResultItem.cs" />
     <Compile Include="CassiniDev.Lib.Net35\Resources\SR.cs" />

@@ -16,6 +16,7 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Security.Permissions;
 using System.Security.Principal;
 using System.Threading;
@@ -36,32 +37,32 @@ namespace CassiniDev
     /// 04.20.11 sky: un-second-guessed myself and un-removed the initial fix. seems to have resolved the issue.
     ///               
     /// </summary>  
-    internal class Host : MarshalByRefObject, IRegisteredObject
+    public class Host : MarshalByRefObject, IRegisteredObject
     {
         
-        private bool _disableDirectoryListing;
+        public bool _disableDirectoryListing;
 
-        private string _installPath;
+        public string _installPath;
 
-        private string _lowerCasedClientScriptPathWithTrailingSlash;
+        public string _lowerCasedClientScriptPathWithTrailingSlash;
 
-        private string _lowerCasedVirtualPath;
+        public string _lowerCasedVirtualPath;
 
-        private string _lowerCasedVirtualPathWithTrailingSlash;
+        public string _lowerCasedVirtualPathWithTrailingSlash;
 
-        private volatile int _pendingCallsCount;
+        public volatile int _pendingCallsCount;
 
-        private string _physicalClientScriptPath;
+        public string _physicalClientScriptPath;
 
-        private string _physicalPath;
+        public string _physicalPath;
 
-        private int _port;
+        public int _port;
 
-        private bool _requireAuthentication;
+        public bool _requireAuthentication;
 
-        private Server _server;
+        public Server _server;
 
-        private string _virtualPath;
+        public string _virtualPath;
 
         public AppDomain AppDomain
         {
@@ -275,7 +276,7 @@ namespace CassiniDev
             HostingEnvironment.InitiateShutdown();
         }
 
-        private void AddPendingCall()
+        public void AddPendingCall()
         {
             //TODO: investigate this issue - ref var not volitile
 #pragma warning disable 0420
@@ -283,7 +284,7 @@ namespace CassiniDev
 #pragma warning restore 0420
         }
 
-        private void RemovePendingCall()
+        public void RemovePendingCall()
         {
             //TODO: investigate this issue - ref var not volitile
 #pragma warning disable 0420
@@ -291,7 +292,7 @@ namespace CassiniDev
 #pragma warning restore 0420
         }
 
-        private void WaitForPendingCallsToFinish()
+        public void WaitForPendingCallsToFinish()
         {
             for (; ; )
             {
@@ -303,5 +304,18 @@ namespace CassiniDev
                 Thread.Sleep(250);
             }
         }
+
+         
+        //FluentSharp: new methods
+        public string Process_SimpleWorkerRequest(string fileName, string query)
+        {
+            var stringWriter = new StringWriter();
+            var simpleWorkerRequest  = new SimpleWorkerRequest(fileName, query, stringWriter);
+            HttpRuntime.ProcessRequest(simpleWorkerRequest);
+            var response = stringWriter.ToString();
+            
+            return response;
+        }        
+        
     }
 }

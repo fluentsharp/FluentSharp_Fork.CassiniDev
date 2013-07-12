@@ -17,9 +17,9 @@ namespace CassiniDev
         
         
         public string Protocol { get; set; }
-        public string Verb { get; internal set; }
-        public string Url { get; internal set; }
-        public byte[] Body { get; internal set; }
+        public string Verb { get;  set; }
+        public string Url { get;  set; }
+        public byte[] Body { get;  set; }
         public string QueryString { get; set; }
         public string ProcessUser { get; set; }
 

@@ -349,7 +349,7 @@ namespace CassiniDev
 
         /// <summary>
         /// </summary>
-        internal void Validate()
+        public void Validate()
         {
             if (string.IsNullOrEmpty(ApplicationPath))
             {

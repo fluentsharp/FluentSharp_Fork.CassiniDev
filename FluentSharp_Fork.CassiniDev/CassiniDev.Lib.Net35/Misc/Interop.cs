@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 namespace CassiniDev
 {
-    internal static class NativeMethods
+    public static class NativeMethods
     {
         #region Structs
 
@@ -83,11 +83,11 @@ namespace CassiniDev
 
         public struct CONSOLE_SCREEN_BUFFER_INFO
         {
-            internal COORD dwCursorPosition;
-            internal COORD dwMaximumWindowSize;
-            internal COORD dwSize;
-            internal SMALL_RECT srWindow;
-            internal Int16 wAttributes;
+            public COORD dwCursorPosition;
+            public COORD dwMaximumWindowSize;
+            public COORD dwSize;
+            public SMALL_RECT srWindow;
+            public Int16 wAttributes;
         }
 
         #endregion
@@ -96,8 +96,8 @@ namespace CassiniDev
 
         public struct COORD
         {
-            internal Int16 x;
-            internal Int16 y;
+            public Int16 x;
+            public Int16 y;
         }
 
         #endregion
@@ -147,10 +147,10 @@ namespace CassiniDev
 
         public struct SMALL_RECT
         {
-            internal Int16 Bottom;
-            internal Int16 Left;
-            internal Int16 Right;
-            internal Int16 Top;
+            public Int16 Bottom;
+            public Int16 Left;
+            public Int16 Right;
+            public Int16 Top;
         }
 
         #endregion

@@ -26,8 +26,8 @@ namespace CassiniDev
     public sealed class WebBrowser
     {
         
-        private readonly string _executablePath;
-        private readonly string _name;
+        public readonly string _executablePath;
+        public readonly string _name;
         ///<summary>
         ///</summary>
         public static readonly WebBrowser Chrome = new WebBrowser("Chrome", GetChromeExecutablePath());
@@ -46,12 +46,12 @@ namespace CassiniDev
 
 
         //HKEY_CURRENT_USER\Software\Opera Software
-        private WebBrowser(string name, string executablePath)
+        public WebBrowser(string name, string executablePath)
         {
             _name = name;
             _executablePath = executablePath;
         }
-        private static string GetOperaExecutablePath()
+        public static string GetOperaExecutablePath()
         {
             string path = null;
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Opera Software\");
@@ -65,7 +65,7 @@ namespace CassiniDev
             }
             return path;
         }
-        private static string GetChromeExecutablePath()
+        public static string GetChromeExecutablePath()
         {
             string path = null;
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Google Chrome\");
@@ -80,7 +80,7 @@ namespace CassiniDev
             return path;
         }
 
-        private static string GetFirefoxExecutablePath()
+        public static string GetFirefoxExecutablePath()
         {
             string path = null;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Mozilla\Mozilla Firefox");
@@ -115,7 +115,7 @@ namespace CassiniDev
             return path;
         }
 
-        private static string GetSafariExecutablePath()
+        public static string GetSafariExecutablePath()
         {
             string path = null;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Apple Computer, Inc.\Safari");
@@ -130,7 +130,7 @@ namespace CassiniDev
             return path;
         }
 
-        internal string ExecutablePath
+        public string ExecutablePath
         {
             get
             {

@@ -24,11 +24,11 @@ namespace CassiniDev
     ///</summary>
     public class RequestEventArgs : EventArgs
     {
-        private readonly Guid _id;
+        public readonly Guid _id;
 
-        private readonly LogInfo _requestLog;
+        public readonly LogInfo _requestLog;
 
-        private readonly LogInfo _responseLog;
+        public readonly LogInfo _responseLog;
 
         ///<summary>
         ///</summary>

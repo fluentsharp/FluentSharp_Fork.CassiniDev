@@ -28,10 +28,10 @@ namespace CassiniDev.UIComponents
     {
         #region Fields
 
-        private readonly string[] _arguments;
+        public readonly string[] _arguments;
 
-        private readonly bool _showHelp;
-        private IDictionary _options;
+        public readonly bool _showHelp;
+        public IDictionary _options;
 
         #endregion
 

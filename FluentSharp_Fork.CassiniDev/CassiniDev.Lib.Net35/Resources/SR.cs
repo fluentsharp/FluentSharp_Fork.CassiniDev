@@ -24,78 +24,78 @@ using System.Threading;
 
 namespace CassiniDev
 {
-    internal sealed class SR
+    public sealed class SR
     {
         
-        internal const string ErrInvalidIPMode="SR.ErrInvalidIPMode";
-        internal const string ErrInvalidIPAddress = "ErrInvalidIPAddress";
-        internal const string ErrInvalidPortMode = "ErrInvalidPortMode";
-        internal const string ErrPortIsInUse = "ErrPortIsInUse";
-        internal const string ErrNoAvailablePortFound = "ErrNoAvailablePortFound";
-        internal const string ErrPortRangeEndMustBeEqualOrGreaterThanPortRangeSta =
+        public const string ErrInvalidIPMode="SR.ErrInvalidIPMode";
+        public const string ErrInvalidIPAddress = "ErrInvalidIPAddress";
+        public const string ErrInvalidPortMode = "ErrInvalidPortMode";
+        public const string ErrPortIsInUse = "ErrPortIsInUse";
+        public const string ErrNoAvailablePortFound = "ErrNoAvailablePortFound";
+        public const string ErrPortRangeEndMustBeEqualOrGreaterThanPortRangeSta =
             "ErrPortRangeEndMustBeEqualOrGreaterThanPortRangeSta";
-        internal const string ErrInvalidPortRangeValue = "ErrInvalidPortRangeValue";
-        internal const string ErrInvalidHostname = "ErrInvalidHostname";
+        public const string ErrInvalidPortRangeValue = "ErrInvalidPortRangeValue";
+        public const string ErrInvalidHostname = "ErrInvalidHostname";
 
-        internal const string ErrFailedToStartCassiniDevServerOnPortError =
+        public const string ErrFailedToStartCassiniDevServerOnPortError =
             "ErrFailedToStartCassiniDevServerOnPortError";
-        internal const string ErrApplicationPathIsNull = "ErrApplicationPathIsNull";
-        internal const string ErrPortOutOfRange = "ErrPortOutOfRange";
+        public const string ErrApplicationPathIsNull = "ErrApplicationPathIsNull";
+        public const string ErrPortOutOfRange = "ErrPortOutOfRange";
 
-        internal const string WebdevAspNetVersion = "WebdevAspNetVersion";
+        public const string WebdevAspNetVersion = "WebdevAspNetVersion";
 
-        internal const string WebdevDirListing = "WebdevDirListing";
+        public const string WebdevDirListing = "WebdevDirListing";
 
-        internal const string WebdevDirNotExist = "WebdevDirNotExist";
+        public const string WebdevDirNotExist = "WebdevDirNotExist";
 
-        internal const string WebdevErrorListeningPort = "WebdevErrorListeningPort";
+        public const string WebdevErrorListeningPort = "WebdevErrorListeningPort";
 
-        internal const string WebdevHttpError = "WebdevHttpError";
+        public const string WebdevHttpError = "WebdevHttpError";
 
-        internal const string WebdevInMemoryLogging = "WebdevInMemoryLogging";
+        public const string WebdevInMemoryLogging = "WebdevInMemoryLogging";
 
-        internal const string WebdevInvalidPort = "WebdevInvalidPort";
+        public const string WebdevInvalidPort = "WebdevInvalidPort";
 
-        internal const string WebdevLogViewerNameWithPort = "WebdevLogViewerNameWithPort";
+        public const string WebdevLogViewerNameWithPort = "WebdevLogViewerNameWithPort";
 
-        internal const string WebdevName = "WebdevName";
+        public const string WebdevName = "WebdevName";
 
-        internal const string WebdevNameWithPort = "WebdevNameWithPort";
+        public const string WebdevNameWithPort = "WebdevNameWithPort";
 
-        internal const string WebdevOpenInBrowser = "WebdevOpenInBrowser";
+        public const string WebdevOpenInBrowser = "WebdevOpenInBrowser";
 
-        internal const string WebdevRunAspNetLocally = "WebdevRunAspNetLocally";
+        public const string WebdevRunAspNetLocally = "WebdevRunAspNetLocally";
 
-        internal const string WebdevServerError = "WebdevServerError";
+        public const string WebdevServerError = "WebdevServerError";
 
-        internal const string WebdevShowDetail = "WebdevShowDetail";
+        public const string WebdevShowDetail = "WebdevShowDetail";
 
-        internal const string WebdevStop = "WebdevStop";
+        public const string WebdevStop = "WebdevStop";
 
-        internal const string WebdevUsagestr1 = "WebdevUsagestr1";
+        public const string WebdevUsagestr1 = "WebdevUsagestr1";
 
-        internal const string WebdevUsagestr2 = "WebdevUsagestr2";
+        public const string WebdevUsagestr2 = "WebdevUsagestr2";
 
-        internal const string WebdevUsagestr3 = "WebdevUsagestr3";
+        public const string WebdevUsagestr3 = "WebdevUsagestr3";
 
-        internal const string WebdevUsagestr4 = "WebdevUsagestr4";
+        public const string WebdevUsagestr4 = "WebdevUsagestr4";
 
-        internal const string WebdevUsagestr5 = "WebdevUsagestr5";
+        public const string WebdevUsagestr5 = "WebdevUsagestr5";
 
-        internal const string WebdevUsagestr6 = "WebdevUsagestr6";
+        public const string WebdevUsagestr6 = "WebdevUsagestr6";
 
-        internal const string WebdevUsagestr7 = "WebdevUsagestr7";
+        public const string WebdevUsagestr7 = "WebdevUsagestr7";
 
-        internal const string WebdevVersionInfo = "WebdevVersionInfo";
+        public const string WebdevVersionInfo = "WebdevVersionInfo";
 
-        internal const string WebdevVwdName = "WebdevVwdName";
+        public const string WebdevVwdName = "WebdevVwdName";
 
-        private static SR _loader;
+        public static SR _loader;
 
-        private readonly ResourceManager _resources;
+        public readonly ResourceManager _resources;
         public const string WebdevStart = "WebdevStart";
 
-        internal SR()
+        public SR()
         {
             Type t = GetType();
             Assembly thisAssembly = t.Assembly;
@@ -103,7 +103,7 @@ namespace CassiniDev
             _resources = new ResourceManager(stringResourcesName, thisAssembly);
         }
 
-        private static CultureInfo Culture
+        public static CultureInfo Culture
         {
             get { return null; }
         }
@@ -150,7 +150,7 @@ namespace CassiniDev
             return string.Format(CultureInfo.CurrentCulture, format, args);
         }
 
-        private static SR GetLoader()
+        public static SR GetLoader()
         {
             if (_loader == null)
             {

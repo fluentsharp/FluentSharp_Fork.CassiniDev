@@ -31,7 +31,7 @@ namespace CassiniDev
     {
         
 
-        private readonly string _postKey = "testresults.axd";
+        public readonly string _postKey = "testresults.axd";
         ///<summary>
         ///</summary>
         public string PostKey
