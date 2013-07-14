@@ -111,7 +111,6 @@
     <Compile Include="CassiniDev.Lib.Net35\Misc\Interop.cs" />
     <Compile Include="CassiniDev.Lib.Net35\Misc\NetworkUtils.cs" />
     <Compile Include="FluentSharp.CassiniDev\API_Cassini.cs" />
-    <Compile Include="FluentSharp.CassiniDev\Extra_ExtensionMethod_TcpClient.cs" />
     <Compile Include="FluentSharp.CassiniDev\ExtensionMethods\Host_ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CassiniDev.Lib.Net35\QUnitExBrowserTestResultItem.cs" />
@@ -119,6 +118,7 @@
     <Compile Include="CassiniDev.Lib.Net35\WebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FluentSharp.CassiniDev.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
