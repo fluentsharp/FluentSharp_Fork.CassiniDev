@@ -1,4 +1,4 @@
-﻿using FluentSharp.BCL;
+﻿using FluentSharp.WinForms;
 using NUnit.Framework;
 using FluentSharp.CoreLib;
 using FluentSharp.CassiniDev;

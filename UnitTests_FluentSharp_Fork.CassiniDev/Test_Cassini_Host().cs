@@ -6,7 +6,7 @@ using System.Threading;
 using System.Web.Hosting;
 using CassiniDev;
 using CassiniDev.FluentSharp.CassiniDev;
-using FluentSharp.BCL;
+using FluentSharp.WinForms;
 using FluentSharp.CassiniDev;
 using FluentSharp.CoreLib;
 using FluentSharp.CoreLib.API;
