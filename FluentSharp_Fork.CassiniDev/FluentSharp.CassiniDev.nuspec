@@ -1,22 +1,28 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
-    <id>FluentSharp.CassiniDev</id>
-    <version>5.3.0.0</version>
-    <title>FluentSharp - CassiniDev</title>
-    <authors>O2 Platform</authors>
-    <owners>O2 Platform</owners>
-    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>http://o2platform.com</projectUrl>
-    <iconUrl>https://www.owasp.org/images/f/f5/O2_Logo_no_Shadow.jpg</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>FluentSharp is an API that dramatically simplifies the use of .NET Framework APIs. </summary>
-    <description>FluentSharp is an API that dramatically simplifies the use of .NET Framework APIs. This is the Fluent# BCL which provides support for a fork of the CassiniDev project</description>
-    <releaseNotes>See GitHub repository</releaseNotes>
-    <copyright>Copyright 2013</copyright>
-    <tags>Fluent OWASP O2Platform Security</tags>
-    <dependencies>
-      <dependency id="FluentSharp.CoreLib" />
-    </dependencies>    
-  </metadata>  
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>FluentSharp.CassiniDev</id>
+        <version>5.5.0.0</version>
+        <title>FluentSharp - WatiN</title>
+        <authors>O2 Platform</authors>
+        <owners>O2 Platform</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+        <projectUrl>http://o2platform.com</projectUrl>
+        <iconUrl>https://www.owasp.org/images/f/f5/O2_Logo_no_Shadow.jpg</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>This dll contains the Cassini WebServer and a fluent API to use it.FluentSharp is an API that dramatically simplifies the use of .NET Framework APIs.  </description>
+        <summary>This dll contains the Cassini WebServer and a fluent API to use it. FluentSharp is an API that dramatically simplifies the use of .NET Framework APIs. </summary>
+        <releaseNotes>5.5.x  - version auto created from TeamCity</releaseNotes>
+        <copyright>O2 Platform 2014</copyright>
+        <language>en-GB</language>
+        <tags>FluentSharp Fluent OWASP O2Platform Security</tags>
+        <dependencies>
+          <group targetFramework=".NETFramework4.5">
+            <dependency id="FluentSharp.CoreLib" />            
+          </group>
+        </dependencies>
+        <frameworkAssemblies>
+          <frameworkAssembly assemblyName="System.Web"/>          
+        </frameworkAssemblies>
+    </metadata>    
 </package>

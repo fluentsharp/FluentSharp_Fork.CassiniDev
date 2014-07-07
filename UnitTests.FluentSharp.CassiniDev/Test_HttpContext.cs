@@ -2,7 +2,7 @@
 
 namespace UnitTests.FluentSharp_AspNet_MVC
 {
-    [TestFixture][Ignore("Temporarily")]
+    [TestFixture]
     public class Test_HttpContext : Temp_Cassini_Site
     {
         [Test]

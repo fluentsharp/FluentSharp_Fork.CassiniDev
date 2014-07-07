@@ -3,6 +3,7 @@ using CassiniDev;
 using FluentSharp.CassiniDev;
 using FluentSharp.CoreLib;
 using FluentSharp.CoreLib.API;
+using FluentSharp.Web35;
 using NUnit.Framework;
 
 namespace UnitTests.FluentSharp_AspNet_MVC

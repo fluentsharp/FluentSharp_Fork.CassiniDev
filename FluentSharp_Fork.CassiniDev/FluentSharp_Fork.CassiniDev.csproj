@@ -8,7 +8,7 @@
     <ProjectGuid>{E4F4B9DC-F41C-4E3E-A630-DC7F425F61A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CassiniDev</RootNamespace>
+    <RootNamespace>FluenSharp.CassiniDev</RootNamespace>
     <AssemblyName>FluenSharp.CassiniDev</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -69,13 +69,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentSharp.CoreLib">
-      <HintPath>..\packages\FluentSharp.CoreLib.5.0.84\lib\net35\FluentSharp.CoreLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +116,12 @@
   <ItemGroup>
     <None Include="FluentSharp.CassiniDev.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FluentSharp.CoreLib\FluentSharp.CoreLib.csproj">
+      <Project>{0a7ce0e0-b092-43b5-ab80-99ba909019c9}</Project>
+      <Name>FluentSharp.CoreLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

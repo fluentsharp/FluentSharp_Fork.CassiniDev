@@ -4,11 +4,12 @@ using CassiniDev;
 using FluentSharp.CassiniDev;
 using FluentSharp.CoreLib;
 using FluentSharp.CoreLib.API;
+using FluentSharp.Web35;
 using NUnit.Framework;
 
 namespace UnitTests.FluentSharp_AspNet_MVC
 {
-    [TestFixture][Ignore("Temporarily")]
+    [TestFixture]
     public class Test_Host 
     {
         [Test]

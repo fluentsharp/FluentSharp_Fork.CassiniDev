@@ -1,11 +1,14 @@
-﻿using FluentSharp.WinForms;
+﻿using FluentSharp.REPL;
+using FluentSharp.Web35;
+using FluentSharp.WinForms;
 using NUnit.Framework;
+using FluentSharp.NUnit;
 using FluentSharp.CoreLib;
 using FluentSharp.CassiniDev;
 
 namespace UnitTests.FluentSharp_AspNet_MVC
 {
-    [TestFixture][Ignore("Temporarily")]
+    [TestFixture]
     public class Test_API_Cassini
     {
         [Test(Description = "Starts the Cassini webserver")]
@@ -85,12 +88,15 @@ namespace UnitTests.FluentSharp_AspNet_MVC
         {
             var cassini = new API_Cassini();
             cassini.start();
-            var browser = "FluentSharp - Test side".popupWindow(700,600).add_WebBrowser();
+            var browser = "FluentSharp - Test side".popupWindow_Hidden().add_WebBrowser();
             
-            browser.open(cassini.url());
+            browser.html().assert_Empty();
 
-            browser.closeForm_InNSeconds(0);
-            browser.waitForClose();
+            browser.open(cassini.url()).waitForCompleted();
+                   
+            
+            browser.html().assert_Not_Empty()
+                          .assert_Contains("Directory Listing");            
 
             //delete site folder
             cassini.PhysicalPath.delete_Folder();
