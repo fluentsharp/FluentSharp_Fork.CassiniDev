@@ -68,6 +68,12 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>TmpKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -117,6 +123,7 @@
   <ItemGroup>
     <None Include="FluentSharp.CassiniDev.nuspec" />
     <None Include="packages.config" />
+    <None Include="TmpKey.snk" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FluentSharp.CoreLib\FluentSharp.CoreLib.csproj">
