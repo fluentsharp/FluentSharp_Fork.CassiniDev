@@ -18,6 +18,12 @@ namespace FluentSharp.CassiniDev
                 ? apiCassini.CassiniServer.Port 
                 : -1;
         }
+         public static string ipAddress(this API_Cassini apiCassini)
+        {
+            if (apiCassini.server().notNull())
+                return apiCassini.server().IPAddress.str();
+            return null;
+        }
 
         public static string url(this API_Cassini apiCassini)
         {
@@ -27,6 +33,20 @@ namespace FluentSharp.CassiniDev
                 return "http://{0}:{1}/".format(server.IPAddress.str(), server.Port);
             }
             return null;
+        }
+        /// <summary>
+        /// Resources a virtual path into a full url
+        /// 
+        /// For example if <code>virtualPath="test.txt"</code>, the return value will be <code>http://server:port/test.txt</code>
+        /// </summary>
+        /// <param name="apiCassini"></param>
+        /// <param name="virtualPath"></param>
+        /// <returns></returns>
+        public static string url(this API_Cassini apiCassini, string virtualPath)
+        {
+            return apiCassini.url()
+                             .uri()
+                             .append(virtualPath).str();
         }
 
         public static API_Cassini start(this API_Cassini apiCassini)
