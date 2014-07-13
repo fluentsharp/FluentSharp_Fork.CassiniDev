@@ -1,10 +1,11 @@
 using FluentSharp.CassiniDev;
+using FluentSharp.CassiniDev.NUnit;
 using FluentSharp.CoreLib;
 using FluentSharp.NUnit;
 using FluentSharp.Web35;
 using NUnit.Framework;
 
-namespace TeamMentor.UnitTests.TM_Website
+namespace UnitTests.FluentSharp.CassiniDev.NUnit
 {
     [TestFixture]
     public class Test_Cassini_Create_Pages : NUnitTests_Cassini

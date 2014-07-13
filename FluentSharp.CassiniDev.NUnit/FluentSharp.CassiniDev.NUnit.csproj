@@ -30,19 +30,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.SHDocVw">
+      <HintPath>..\..\packages\WatiN.2.1.0\lib\net40\Interop.SHDocVw.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+      <HintPath>..\..\packages\WatiN.2.1.0\lib\net40\Microsoft.mshtml.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WatiN.Core">
+      <HintPath>..\..\packages\WatiN.2.1.0\lib\net40\WatiN.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\NUnitTests_Cassini.cs" />
+    <Compile Include="ExtensionMethods\CassiniDev_ExtensionMethods_REPL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,9 +69,25 @@
       <Project>{0DA6B6B3-5BE3-4610-BB7B-EA9A4BAF27AF}</Project>
       <Name>FluentSharp.NUnit</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp.REPL\FluentSharp.REPL.csproj">
+      <Project>{D742BBEF-BFDC-477F-9880-5E0E2C89B6B2}</Project>
+      <Name>FluentSharp.REPL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\FluentSharp.Web\FluentSharp.Web_3_5.csproj">
       <Project>{FF88F616-4047-46F0-92C5-AFF282617505}</Project>
       <Name>FluentSharp.Web_3_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp.WinForms\FluentSharp.WinForms.csproj">
+      <Project>{DF7E73CB-02AC-4689-BB8C-AC21FFCCDDC5}</Project>
+      <Name>FluentSharp.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp_Fork.WatiN\FluentSharp.WatiN.NUnit\FluentSharp.WatiN.NUnit.csproj">
+      <Project>{A78F7EAA-5B18-469A-896E-E7E79AAEFD8E}</Project>
+      <Name>FluentSharp.WatiN.NUnit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp_Fork.WatiN\FluentSharp.WatiN\FluentSharp.WatiN.csproj">
+      <Project>{95399705-D70E-44FD-9D48-F71C33E2D9D1}</Project>
+      <Name>FluentSharp.WatiN</Name>
     </ProjectReference>
     <ProjectReference Include="..\FluentSharp_Fork.CassiniDev\FluentSharp.CassiniDev.csproj">
       <Project>{E4F4B9DC-F41C-4E3E-A630-DC7F425F61A9}</Project>

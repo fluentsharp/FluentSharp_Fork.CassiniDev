@@ -5,7 +5,7 @@ using FluentSharp.NUnit;
 using FluentSharp.Web35;
 using NUnit.Framework;
 
-namespace TeamMentor.UnitTests.TM_Website
+namespace FluentSharp.CassiniDev.NUnit
 {
     public class NUnitTests_Cassini : NUnitTests
     {

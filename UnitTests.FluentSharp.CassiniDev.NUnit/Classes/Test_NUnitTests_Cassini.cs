@@ -1,8 +1,9 @@
+using FluentSharp.CassiniDev.NUnit;
 using FluentSharp.NUnit;
 using FluentSharp.Web35;
 using NUnit.Framework;
 
-namespace TeamMentor.UnitTests.TM_Website
+namespace UnitTests.FluentSharp.CassiniDev.NUnit
 {
     [TestFixture] 
     public class Test_NUnitTests_Cassini
