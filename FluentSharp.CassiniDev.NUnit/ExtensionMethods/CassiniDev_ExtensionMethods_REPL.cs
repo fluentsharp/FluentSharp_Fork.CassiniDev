@@ -11,14 +11,27 @@ namespace FluentSharp.CassiniDev.NUnit
 {
     public static class CassiniDev_ExtensionMethods_REPL
     {
-        public static ascx_Simple_Script_Editor script_Cassini(this API_Cassini api_Cassini)
+        public static ascx_Simple_Script_Editor script_Cassini(this API_Cassini api_Cassini, bool startHidden = false)
         {
             api_Cassini.url().assert_Not_Null()
                              .uri().GET();
             
             var extraCode = @"
 //using FluentSharp.CassiniDev
-//O2Ref:FluenSharp.CassiniDev.dll
+//O2Ref:FluentSharp.CassiniDev.dll
+";
+            return api_Cassini.script_Me("cassini", startHidden)
+                              .code_Append(extraCode);
+        }
+
+        public static ascx_Simple_Script_Editor script_IE(this API_Cassini api_Cassini)
+        {
+            api_Cassini.url().assert_Not_Null()
+                             .uri().GET();
+            
+            var extraCode = @"
+//using FluentSharp.CassiniDev
+//O2Ref:FluentSharp.CassiniDev.dll
 ";
      
 

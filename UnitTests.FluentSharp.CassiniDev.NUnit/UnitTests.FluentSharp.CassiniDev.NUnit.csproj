@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Test_CassiniDev_REPL.cs" />
+    <Compile Include="Classes\Test_CassiniDev_ExtensionMethods_REPL.cs" />
     <Compile Include="Classes\Test_Cassini_Create_Pages.cs" />
     <Compile Include="Classes\Test_NUnitTests_Cassini.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
