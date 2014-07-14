@@ -8,7 +8,7 @@ using FluentSharp.CoreLib;
 using FluentSharp.NUnit;
 using NUnit.Framework;
 
-namespace UnitTests_FluentSharp_Fork.CassiniDev.ExtensionMethods
+namespace UnitTests.FluentSharp.CassiniDev
 {    
     [TestFixture]
     public class Test_API_Cassini_ExtensionMethods
@@ -21,7 +21,7 @@ namespace UnitTests_FluentSharp_Fork.CassiniDev.ExtensionMethods
             apiCassini.webRoot().assert_Folder_Empty();
         }
         [TearDown] public void tearDown()
-        {
+        {               
             apiCassini.webRoot().assert_Folder_Deleted();
         }
         [Test] public void url()
@@ -33,7 +33,7 @@ namespace UnitTests_FluentSharp_Fork.CassiniDev.ExtensionMethods
 
             //check API_Cassini.url(virtualPath)
             var file = "test.txt"; 
-            apiCassini.url(file).assert_Equal_To(expected_Url + file);            
+            apiCassini.url(file).assert_Equal_To(expected_Url + file);           
         }
     }
 }

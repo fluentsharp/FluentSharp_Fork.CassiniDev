@@ -23,6 +23,8 @@ using System.Threading;
 using System.Web;
 using System.Web.Hosting;
 //
+using FluentSharp.CoreLib;
+
 #endregion
 
 namespace CassiniDev
@@ -305,17 +307,50 @@ namespace CassiniDev
             }
         }
 
-         
-        //FluentSharp: new methods
-        public string Process_SimpleWorkerRequest(string fileName, string query)
+
+
+
+        // FluentSharp Extra methods to help making Process Request easier
+        // Note these methods need to be done here (and not as extension methods) since they will need to be executed from 
+        // inside the current Host AppDomain
+
+        /// <summary>
+        /// Executes the provided file using an SimpleWorkerRequest
+        /// 
+        /// Note that the file must not be an resource not handled by Cassini (for example calling this method for an *.html will return a empty page) 
+        /// </summary>
+        /// <param name="virtualPath"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public string Render_Request(string virtualPath, string query = "")
         {
             var stringWriter = new StringWriter();
-            var simpleWorkerRequest  = new SimpleWorkerRequest(fileName, query, stringWriter);
-            HttpRuntime.ProcessRequest(simpleWorkerRequest);
-            var response = stringWriter.ToString();
+            return Render_Request(virtualPath,query,stringWriter);
+        }
+        public string Render_Request(string virtualPath, string query, StringWriter stringWriter)
+        {
+            var simpleWorkerRequest  = Create_SimpleWorkerRequest(virtualPath, query, stringWriter);
+            return Render_SimpleWorkerRequest(simpleWorkerRequest, stringWriter);
             
+        }    
+        public string Render_SimpleWorkerRequest(SimpleWorkerRequest simpleWorkerRequest, StringWriter stringWriter)
+        {
+            HttpRuntime.ProcessRequest(simpleWorkerRequest);
+            var response = stringWriter.ToString();            
             return response;
-        }        
+        }
+
+        public SimpleWorkerRequest Create_SimpleWorkerRequest(string virtualPath, string query, StringWriter stringWriter)
+        {
+            return new SimpleWorkerRequest(virtualPath, query, stringWriter);            
+        }
         
+        public string httpContext()
+        {
+            var httpContext = HttpContext.Current;
+            if (httpContext != null)
+                return httpContext.ToString();
+            return null;
+        }
     }
 }

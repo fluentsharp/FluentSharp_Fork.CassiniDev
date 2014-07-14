@@ -50,15 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CassiniDev\Test_Host__ExtraMethods.cs" />
+    <Compile Include="ExtensionMethods\API_Cassini_ExtensionMethods_AppDomain.cs" />
     <Compile Include="ExtensionMethods\Test_API_Cassini_ExtensionMethods.cs" />
     <Compile Include="ExtensionMethods\Test_API_Cassini_ExtensionMethods_Files.cs" />
-    <Compile Include="Helper\Temp_Cassini_Site.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_Cassini.cs" />
-    <Compile Include="Test_Cassini_Host%28%29.cs" />
-    <Compile Include="Test_HttpContext.cs" />
+    <Compile Include="Classes\Test_API_Cassini.cs" />
+    <Compile Include="Classes\CassiniDev\Test_Host.cs" />
+    <Compile Include="FluentSharp.CassiniDev.NUnit\Test_CassiniDev_ExtensionMethods_REPL.cs" />
+    <Compile Include="Classes\Test_Cassini_Create_Pages.cs" />
+    <Compile Include="FluentSharp.CassiniDev.NUnit\Test_NUnitTests_Cassini.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FluentSharp.CassiniDev.NUnit\Readme.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +86,17 @@
       <Project>{DF7E73CB-02AC-4689-BB8C-AC21FFCCDDC5}</Project>
       <Name>FluentSharp.WinForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FluentSharp.CassiniDev.NUnit\FluentSharp.CassiniDev.NUnit.csproj">
+      <Project>{c0e15081-4f21-48d3-8c9b-64baa3fdf4d4}</Project>
+      <Name>FluentSharp.CassiniDev.NUnit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FluentSharp_Fork.CassiniDev\FluentSharp.CassiniDev.csproj">
       <Project>{E4F4B9DC-F41C-4E3E-A630-DC7F425F61A9}</Project>
       <Name>FluentSharp.CassiniDev</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

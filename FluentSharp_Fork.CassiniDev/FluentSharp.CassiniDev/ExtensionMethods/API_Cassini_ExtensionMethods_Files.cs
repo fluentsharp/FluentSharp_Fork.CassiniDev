@@ -34,12 +34,69 @@ namespace FluentSharp.CassiniDev
             return null;   
         }
         /// <summary>
+        /// Creates a random ASPX file on the web root (with no dynamic content, just pure text)
+        /// 
+        /// returns <code>apiCassini.create_Random_File("aspx");</code>
+        /// </summary>
+        /// <param name="apiCassini"></param>        
+        /// <returns></returns>
+        public static string create_Random_File_Aspx(this API_Cassini apiCassini)
+        {
+            return apiCassini.create_Random_File("aspx");
+        }
+        /// <summary>
+        /// Creates a random HTML file on the web root
+        /// 
+        /// returns <code>apiCassini.create_Random_File("html");</code>
+        /// </summary>
+        /// <param name="apiCassini"></param>        
+        /// <returns></returns>
+        public static string create_Random_File_Html(this API_Cassini apiCassini)
+        {
+            return apiCassini.create_Random_File("html");
+        }
+        /// <summary>
+        /// Creates a random Text file on the web root
+        /// 
+        /// returns <code>apiCassini.create_Random_File("txt");</code>
+        /// </summary>
+        /// <param name="apiCassini"></param>        
+        /// <returns></returns>
+        public static string create_Random_File_Txt(this API_Cassini apiCassini)
+        {
+            return apiCassini.create_Random_File("txt");
+        }
+        /// <summary>
+        /// Creates a random file (one with a unique name and contents) in the web root of apiCassini
+        /// 
+        /// The file name is created by <code>var fileName     = "randomFile_{0}.{1}".format(6.randomLetters(), extension);</code>
+        /// </summary>
+        /// <param name="apiCassini"></param>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        public static string create_Random_File(this API_Cassini apiCassini, string extension)
+        {
+            var fileName     = "randomFile_{0}.{1}".format(6.randomLetters(), extension);
+            var fileContents = "This is a random file created by API_Cassini.create_Random_File extension method".line().add_5_RandomLetters();
+            return apiCassini.create_File(fileName, fileContents);
+        }
+        /// <summary>
+        /// Returns the url to the file provided
+        /// </summary>
+        /// <param name="fileToMap"></param>
+        /// <param name="apiCassini"></param>
+        /// <returns></returns>
+        public static string url_From_File(this string fileToMap,  API_Cassini apiCassini)
+        {
+            return apiCassini.url_From_File(fileToMap);
+        }
+        /// <summary>
         /// Returns the url to the file provided
         /// 
         /// For example c:\path\to\server\a\file.aspx should return http://server:port:/a/file.aspx
         /// </summary>
         /// <param name="apiCassini"></param>
-        /// <param name="fileUrl"></param>
+        /// <param name="fileToMap"></param>
         /// <returns></returns>
         public static string url_From_File(this API_Cassini apiCassini, string fileToMap)
         {
@@ -54,7 +111,7 @@ namespace FluentSharp.CassiniDev
         /// For example http://server:port:/a/file.aspx should return c:\path\to\server\a\file.aspx
         /// </summary>
         /// <param name="apiCassini"></param>
-        /// <param name="fileUrl"></param>
+        /// <param name="urlToMap"></param>
         /// <returns></returns>
         public static string file_From_Url(this API_Cassini apiCassini, string urlToMap)
         {

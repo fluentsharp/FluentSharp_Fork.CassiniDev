@@ -45,21 +45,20 @@ namespace UnitTests.FluentSharp.CassiniDev.NUnit
             scriptEditor.executionResult<API_Cassini>().assert_Is(api_Cassini);     // and it is of type API_Cassini
             
             //check compilation
-            var csharpCompiler = scriptEditor.csharpCompiler;
+            var csharpCompiler = scriptEditor.csharpCompiler();
 
-            csharpCompiler.CompiledAssembly     .assert_Not_Null();
-            csharpCompiler.ReferencedAssemblies.assert_Size_Is(15)
-                                               .assert_Contains("FluentSharp.CassiniDev".assembly_Location());
-
-
+            csharpCompiler.compiledAssembly()    .assert_Not_Null();
+            csharpCompiler.referencedAssemblies().assert_Size_Is(15)
+                                                 .assert_Contains("FluentSharp.CassiniDev".assembly_Location());            
+          //  parentForm.waitForClose();
             parentForm.close();
         }
         [Test]public void script_IE()
         {                                      
-            var scriptEditor     = api_Cassini .script_Cassini()    .assert_Not_Null();
+            var scriptEditor     = api_Cassini .script_IE()         .assert_Not_Null();
             var parentForm       = scriptEditor.parentForm()        .assert_Not_Null();
             var invocationParams = scriptEditor.InvocationParameters.assert_Not_Null();
-            
+                        
             invocationParams.assert_Size_Is(2);
 
             scriptEditor.onExecute = (result)=>

@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Net.Sockets;
 using CassiniDev;
-using FluentSharp.CassiniDev;
 using FluentSharp.CoreLib;
 using FluentSharp.CoreLib.API;
 using FluentSharp.Web35;
 using NUnit.Framework;
 
-namespace UnitTests.FluentSharp_AspNet_MVC
+namespace UnitTests.FluentSharp.CassiniDev
 {
     [TestFixture]
     public class Test_Host 
     {
         [Test]
-        public void Host()
+        public void Create_And_Configure_Host()
         {            
             var server = new Server("_temp_CassiniSite".tempDir());
 
@@ -124,10 +123,11 @@ namespace UnitTests.FluentSharp_AspNet_MVC
             var filePath         = server.PhysicalPath.pathCombine(fileName);
             fileContents.saveAs(filePath);            
             
-            var response1 = host.Process_SimpleWorkerRequest(fileName, query1);            
-            var response2 = host.Process_SimpleWorkerRequest(fileName, query2);            
-            var response3 = host.Process_SimpleWorkerRequest(fileName, query3);                        
-            var response4 = host.Process_SimpleWorkerRequest(fileName, query4);                        
+            
+            var response1 = host.Render_Request(fileName, query1);            
+            var response2 = host.Render_Request(fileName, query2);            
+            var response3 = host.Render_Request(fileName, query3);                        
+            var response4 = host.Render_Request(fileName, query4);                        
             Assert.AreEqual(response1, expectedResponse1);
             Assert.AreEqual(response2, expectedResponse2);
             Assert.AreEqual(response3, expectedResponse3);
@@ -138,47 +138,5 @@ namespace UnitTests.FluentSharp_AspNet_MVC
             server.PhysicalPath.delete_Folder();
         }
 
-    }
-
-
-    [TestFixture]
-    public class Test_Cassini_Host : Temp_Cassini_Site
-    {
-        [Test]
-        public void Host_Object()
-        {
-
-            //var host = server.invoke("GetHost");
-            //Server.script_Me();
-         //   Assert.IsNotNull(host);
-            //
-        }
-
-        [Test]
-        public void Get_Html_From_Txt_and_Aspx_Files()
-        {
-            Action<string,string,string> checkFileViaHttp = 
-                (fileName,fileContents, expectedResponse) =>
-                    {
-                        var filePath = webRoot.pathCombine(fileName);
-                        Assert.IsFalse(filePath.fileExists());
-                        if (fileContents.valid())
-                        {
-                            fileContents.saveAs(filePath);
-                            Assert.IsTrue(filePath.fileExists());
-                        }
-                        var fileUrl = apiCassini.url() + fileName;
-                        var html    = fileUrl.html();
-                        Assert.AreEqual(expectedResponse, html);
-                        filePath.file_Delete();
-                        Assert.IsFalse(filePath.fileExists());                
-                    };
-            
-            checkFileViaHttp("test_File1.txt" , ""                          , "");            
-            checkFileViaHttp("test_File2.txt" , "Some contents ..."         , "Some contents ...");                        
-            checkFileViaHttp("test_File2.txt" , "Some contents changed"     , "Some contents changed");                        
-            checkFileViaHttp("test_ASPX1.aspx",  "<%=\"Hello from ASPX\"%>" , "Hello from ASPX");
-            checkFileViaHttp("test_ASPX2.aspx",  "<%=\"Hello Again\"%>"     , "Hello Again");
-        }
     }
 }

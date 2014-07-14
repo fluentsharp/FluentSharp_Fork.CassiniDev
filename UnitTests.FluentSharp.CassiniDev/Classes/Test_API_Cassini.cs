@@ -6,7 +6,7 @@ using FluentSharp.NUnit;
 using FluentSharp.CoreLib;
 using FluentSharp.CassiniDev;
 
-namespace UnitTests.FluentSharp_AspNet_MVC
+namespace UnitTests.FluentSharp.CassiniDev
 {
     [TestFixture]
     public class Test_API_Cassini
@@ -88,7 +88,7 @@ namespace UnitTests.FluentSharp_AspNet_MVC
         {
             var cassini = new API_Cassini();
             cassini.start();
-            var browser = "FluentSharp - Test side".popupWindow_Hidden().add_WebBrowser();
+            var browser = "FluentSharp - Test side".popupWindow().add_WebBrowser();
             
             browser.html().assert_Empty();
 
