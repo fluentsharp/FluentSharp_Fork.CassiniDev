@@ -18,11 +18,15 @@
         <tags>FluentSharp Fluent OWASP O2Platform Security</tags>
         <dependencies>
           <group targetFramework=".NETFramework4.5">
-            <dependency id="FluentSharp.CoreLib" />            
+            <dependency id="FluentSharp.CoreLib" />
+            <dependency id="FluentSharp.CassiniDev" />
+            <dependency id="FluentSharp.NUnit" />
+            <dependency id="FluentSharp.REPL" />
+            <dependency id="FluentSharp.WatiN" />
+            <dependency id="FluentSharp.WatiN.NUnit" />
+            <dependency id="FluentSharp.Web_3_5" />
+            <dependency id="FluentSharp.WinForms" />            
           </group>
-        </dependencies>
-        <frameworkAssemblies>
-          <frameworkAssembly assemblyName="System.Web"/>          
-        </frameworkAssemblies>
+        </dependencies>        
     </metadata>    
 </package>

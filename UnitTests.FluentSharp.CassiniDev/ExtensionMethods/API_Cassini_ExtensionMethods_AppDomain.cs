@@ -75,7 +75,8 @@ namespace UnitTests_FluentSharp_Fork.CassiniDev.ExtensionMethods
             var appDomain = apiCassini.appDomain().assert_Not_Null();
             
             apiCassini.create_Random_File_Aspx()                                // create a temp file and get it via a GET request (this used to cause probs due to the fact that GetAssemblies doesn't work after the first GET request)
-                      .url_From_File(apiCassini).GET().assert_Contains("This is a random file created by");
+                      .url_From_File(apiCassini).assert_Is_Uri()
+                                                .GET().assert_Contains("This is a random file created by");
 
             appDomain.copy_To_Bin_Folder("FluentSharp.CoreLib".assembly())      // copy the FluentSharp.CoreLib to the bin folder
                      .assert_File_Exists();            

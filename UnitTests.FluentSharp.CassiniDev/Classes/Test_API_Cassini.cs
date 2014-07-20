@@ -100,6 +100,7 @@ namespace UnitTests.FluentSharp.CassiniDev
 
             //delete site folder
             cassini.PhysicalPath.delete_Folder();
+            browser.closeForm();
 
         }
 
