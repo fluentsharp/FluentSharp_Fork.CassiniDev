@@ -38,9 +38,12 @@ namespace FluentSharp.CassiniDev.NUnit
             apiCassini.stop();
             port      .tcpClient().assert_Null();                        
               
-          
-            Files.deleteFolder(webRoot, true).assert_True("webRoot could not be deleted"); 
-            webRoot.folder_Wait_For_Deleted();
+            for(var i=0; i<10;i++)
+                if(Files.deleteFolder(webRoot, true))
+                    break;
+                "wating for being able to delete folder".info();
+                100.sleep();
+            //webRoot.folder_Wait_For_Deleted();
             //   webRoot.parentFolder().startProcess();
             webRoot.assert_Folder_Not_Exists();
             // 

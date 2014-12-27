@@ -3,6 +3,7 @@ using FluentSharp.CassiniDev.NUnit;
 using FluentSharp.CoreLib;
 using FluentSharp.REPL;
 using FluentSharp.NUnit;
+using FluentSharp.Watin;
 using FluentSharp.WinForms;
 using NUnit.Framework;
 
@@ -53,6 +54,15 @@ namespace UnitTests.FluentSharp.CassiniDev.NUnit
           //  parentForm.waitForClose();
             parentForm.close();
         }
+        [Test] public void open_IE()
+        {            
+            var assembly = "Interop.SHDocVw".assembly();                            // for some reason we need to do this in order for the dll to be found by the UnitTest
+            assembly.assert_Not_Null();
+            var ie = "Cassini Dev Test".add_IE_PopupWindow();
+            ie.assert_Not_Null();
+            ie.parentForm().close();
+            ie.parentForm_WaitForClose();
+        }
         [Test]public void script_IE()
         {                                      
             var scriptEditor     = api_Cassini .script_IE()         .assert_Not_Null();
@@ -65,6 +75,7 @@ namespace UnitTests.FluentSharp.CassiniDev.NUnit
                 {
                     scriptEditor.LastExecutionResult.assert_Not_Null();
                                                     //.assert_Are_Equal(()=> scriptEdiapi_Cassini.ie);                                        
+                    scriptEditor.parentForm().closeForm();
                     parentForm.closeForm();
                 };
             scriptEditor.onCompileExecuteOnce();

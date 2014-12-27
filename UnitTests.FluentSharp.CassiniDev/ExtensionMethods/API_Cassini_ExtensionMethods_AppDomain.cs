@@ -36,7 +36,7 @@ namespace UnitTests_FluentSharp_Fork.CassiniDev.ExtensionMethods
                 "Skypping since appDomain.assemblies() is returning an Empty list".assert_Ignore();
 
             appDomain.isAssemblyLoaded("System.Web"                      ).assert_True ();
-            appDomain.isAssemblyLoaded("FluentSharp.CoreLib"             ).assert_False();
+            //appDomain.isAssemblyLoaded("FluentSharp.CoreLib"             ).assert_False();
 
             appDomain.load            ("FluentSharp.CoreLib".assembly_Location(),true).assert_True ();
             appDomain.isAssemblyLoaded("FluentSharp.CoreLib"                         ).assert_True ();            
