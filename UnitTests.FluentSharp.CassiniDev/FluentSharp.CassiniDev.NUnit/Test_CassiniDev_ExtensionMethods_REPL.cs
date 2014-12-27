@@ -28,7 +28,7 @@ namespace UnitTests.FluentSharp.CassiniDev.NUnit
 
         [Test] public void script_Cassini()
         {
-            var scriptEditor     = api_Cassini .script_Cassini(true)  .assert_Not_Null();
+            var scriptEditor     = api_Cassini .script_Cassini(false)  .assert_Not_Null();
             var parentForm       = scriptEditor.parentForm()          .assert_Not_Null();
             var invocationParams = scriptEditor.invocationParameters().assert_Not_Null();
             

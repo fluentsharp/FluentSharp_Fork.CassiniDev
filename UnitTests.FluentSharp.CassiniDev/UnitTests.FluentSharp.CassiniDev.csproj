@@ -99,6 +99,10 @@
       <Project>{DF7E73CB-02AC-4689-BB8C-AC21FFCCDDC5}</Project>
       <Name>FluentSharp.WinForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\FluentSharp.Zip\FluentSharp.Zip.csproj">
+      <Project>{ed28a793-2efe-416b-839d-f85b637ab7ea}</Project>
+      <Name>FluentSharp.Zip</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\FluentSharp_Fork.WatiN\FluentSharp.WatiN\FluentSharp.WatiN.csproj">
       <Project>{95399705-D70E-44FD-9D48-F71C33E2D9D1}</Project>
       <Name>FluentSharp.WatiN</Name>
